@@ -8,10 +8,8 @@ export const fetchAdverts = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('https://65ce64b7c715428e8b40ac03.mockapi.io/adverts');
-      console.log(response.data, 'response.data');
-      return response.data;
+       return response.data;
     } catch (e) {
-      console.log(e,'e');
       return thunkAPI.rejectWithValue(e.message);
     }
   }

@@ -7,7 +7,8 @@ import { useDispatch } from 'react-redux';
 // import { FilterContacts } from 'components/FilterContacts/FilterContacts';
 import { fetchAdverts } from '../redux/operations';
 // import { selectLoading, selectError } from '../redux/selectors';
-import CarsList  from '../components/CarsList.jsx'
+import CarsList from '../components/CarsList.jsx'
+import Filter from 'components/Filter';
 
 const Catalog=() =>{
 const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const dispatch = useDispatch();
 
   return (
     <>
+      <Filter/>
       <CarsList />
     </>);
 }

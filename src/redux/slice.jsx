@@ -27,7 +27,6 @@ const advertsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.list = action.payload;
-        console.log(state.list , 'state.list ');
       })
       .addCase(fetchAdverts.rejected, handleRejected);
   },
