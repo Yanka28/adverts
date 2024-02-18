@@ -72,3 +72,18 @@ font-style: normal;
 font-weight: 400;
 line-height: 18px;
   `;
+
+export const ButtonOnload = styled.button`
+margin: 28px auto 28px;
+height: 44px;
+border: none;
+border-radius: 12px;
+display: flex;
+font: Manrope;
+font-size: 18px;
+font-weight: 600;
+justify-content: center;
+align-items: center;
+color: rgb(52, 112, 255);
+`; 
+
