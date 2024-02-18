@@ -36,8 +36,7 @@ const advertsSlice = createSlice({
         state.error = null;
         state.list = action.payload;
         state.filteredList = action.payload;
-        console.log(state.filteredList, 'state');
-      })
+         })
       .addCase(fetchAdverts.rejected, handleRejected);
   },
 });

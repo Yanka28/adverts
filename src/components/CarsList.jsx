@@ -39,7 +39,7 @@ console.log(favorites, 'favorites');
   <CardsListStyle>
     {
      filteredList?.map((item) => (
-       <Card item={item} addToFavorites={addToFavorites}/>
+       <Card key={item.id} item={item} addToFavorites={addToFavorites}/>
       ))}
   </CardsListStyle>
   <ButtonOnload onClick={handleLoadMoreClick}>Load more</ButtonOnload>
