@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchAdverts } from '../redux/operations';
@@ -7,12 +7,13 @@ import CarsList from '../components/CarsList.jsx'
 import Filter from 'components/Filter';
 
 const Catalog=() =>{
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
+   const [num, setNum] = useState(1)
   // const isLoading = useSelector(selectLoading);
   // const error = useSelector(selectError);
 
   useEffect(() => {
-    dispatch(fetchAdverts());
+    dispatch(fetchAdverts(1));
   }, [dispatch])
 
   return (
