@@ -1,20 +1,20 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { selectAdverts, selectDesiredCar } from '../redux/selectors';
+import { selectAdverts} from '../redux/selectors';
 import { MakeYear, MakePrice,CardsListStyle, Card, Img , Model,  Description ,Button } from '../components/CarsList.style'
 import { cutWords} from '../helpers/cutWords.jsx'
 
 const CarsList = () => {
-  const { list } = useSelector(selectAdverts);
-  // console.log(list,'list');
-  const dispatch = useDispatch();
-  const filteredcars = useSelector(selectDesiredCar);
- console.log(filteredcars, 'filteredcars');
+const { list} =useSelector(selectAdverts)
+const {filteredList} = useSelector(selectAdverts);
+
+;
+
 return (
   <CardsListStyle>
-    {list?.map((item) => (
+    {
+      filteredList?.map((item) => (
       <Card key={item.id}>
         <Img src={item.img} alt="Car" width={274} height={268} />
-   
         <MakePrice>
         <MakeYear>
         <p>{item.make} </p>

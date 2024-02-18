@@ -14,12 +14,20 @@ const InitialState = {
   list: [],
   isLoading: false,
   error: null,
-};
+  filteredList: []
+}
 
 const advertsSlice = createSlice({
   name: 'adverts',
   initialState: InitialState,
-  reducers: {},
+  reducers: {
+    setFilteredList(state, action) {
+      return {
+        ...state,
+        filteredList: action.payload,
+      };
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchAdverts.pending, handlePending)
@@ -31,4 +39,5 @@ const advertsSlice = createSlice({
       .addCase(fetchAdverts.rejected, handleRejected);
   },
 });
+export const { setFilteredList } = advertsSlice.actions;
 export const advertsReducer = advertsSlice.reducer;

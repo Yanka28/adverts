@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectFilter } from '../redux/selectors';
-import { setCarsFilter } from '../redux/filterSlice';
+import { selectFilter, selectDesiredCar } from '../redux/selectors';
+import { setBrandFilter, setPriceFilter, setFromFilter, setToFilter } from '../redux/filterSlice';
+import { setFilteredList} from '../redux/slice'
 import { BrandsStyle, PriceStyle, FilterStyle, MileageStyle, InputsStyle, Input, Button, Text } from './Filter.style.jsx'
 
 const cars = [
 {value:"Buick", label:"Buick"},
-{ value: "Volvo", label: "Volvo" },
+{value: "Volvo", label: "Volvo" },
 {value:"HUMMER", label:"HUMMER"},
 {value:"Subaru", label:"Subaru"},
 {value:"Mitsubishi", label:"Mitsubishi"},
@@ -28,33 +29,11 @@ const cars = [
 {value:  "Kia", label:  "Kia"},
 {value:   "Land", label:   "Land"},
 ]
-// const cars = [
-//   "Buick",
-//   "Volvo",
-//   "HUMMER",
-//   "Subaru",
-//   "Mitsubishi",
-//   "Nissan",
-//   "Lincoln",
-//   "GMC",
-//   "Hyundai",
-//   "MINI",
-//   "Bentley",
-//   "Mercedes-Benz",
-//   "Aston Martin",
-//   "Pontiac",
-//   "Lamborghini",
-//   "Audi",
-//   "BMW",
-//   "Chevrolet",
-//   "Mercedes-Benz",
-//   "Chrysler",
-//   "Kia",
-//   "Land"
-// ]
+
 const price = [
     { value: "30", label: " 30" },
     { value: "40", label: " 40" },
+    { value: "45", label: " 45" },
     { value: "50", label: " 50" },
     { value: "60", label: " 60" },
     { value: "70", label: " 70" },
@@ -63,12 +42,29 @@ const price = [
     { value: "100", label: " 100" },
 ]
 const Filter = () => { 
-const filter = useSelector(selectFilter);
-    const dispatch = useDispatch();
-    console.log(filter);
 
-  const  handleSelectChange = (selected) => {
-    dispatch(setCarsFilter(selected));
+    const filter = useSelector(selectFilter);
+    const filteredcars = useSelector(selectDesiredCar)
+    const dispatch = useDispatch();
+
+ 
+      const  handleSelectBrandChange = (selected) => {
+    dispatch(setBrandFilter(selected));
+    };
+      const  handleSelectPriceChange = (selected) => {
+    dispatch(setPriceFilter(selected));
+    };
+    
+    const handleFromChange = (e) => {
+        const value = parseFloat(e.target.value);
+        if (!isNaN(value)){ dispatch(setFromFilter(value))}
+     ;
+  };
+
+    const handleToChange = (e) => {
+        const value = parseFloat(e.target.value);
+        if (!isNaN(value)){ dispatch(setToFilter(value))}
+   ;
   };
 
     const customStyles = {
@@ -79,33 +75,32 @@ const filter = useSelector(selectFilter);
         backgroundColor: 'rgb(236, 236, 241)',
     }),
     };
+
 const handleSubmit = (e) => {
-        e.preventDefault();
-        // Використовуйте зібрані дані, наприклад, відправте на сервер
-        // console.log('Name:', name);
-        // console.log('Email:', email);
-        // console.log('Selected option:', selectedOption);
+    e.preventDefault();
+    console.log(filter, 'filter ');
+    dispatch(setFilteredList(filteredcars))
     };
+
     return (
         <FilterStyle>
-            <form  onSubmit={handleSubmit} style={{display: 'flex',
-gap: '18px',} }>
+            <form style={{display: 'flex', gap: '18px',} } onSubmit={handleSubmit}>
         <BrandsStyle>
             <Text>Car brand</Text>
-              <Select value={filter} onChange={handleSelectChange} options={cars}  styles={customStyles} type="text" placeholder="Enter the text"  />
+              <Select value={filter.brand.value} onChange={handleSelectBrandChange} options={cars}  styles={customStyles} type="text" placeholder="Enter the text"  />
         </BrandsStyle>
         <PriceStyle>
             <Text>Price/1hour</Text>
-                    <Select options={price} styles={customStyles} type="text" placeholder="To $" />
+                    <Select value={filter.price.value} onChange={handleSelectPriceChange} options={price} styles={customStyles} type="text" placeholder="To $" />
         </PriceStyle>
         <MileageStyle>
                     <Text>Car mileage / km</Text>
                 <InputsStyle>
-                <Input type="text" placeholder="    From" />
-                <Input type="text" placeholder="    To" />
+                   <Input value={ filter.mileage[0]}   onChange={handleFromChange} type="number" placeholder="    From" />
+                   <Input value={ filter.mileage[1]} onChange={handleToChange} type="number" placeholder="    To" />
                 </InputsStyle>
                 </MileageStyle>
-        <Button type="submit">Search</Button>
+        <Button type="submit" >Search</Button>
         </form>
         
             </FilterStyle>
