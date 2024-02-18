@@ -6,24 +6,20 @@ import { fetchAdverts } from '../redux/operations';
 import CarsList from '../components/CarsList.jsx'
 import Filter from 'components/Filter';
 
-const Catalog=() =>{
+const Favorites=() =>{
   const dispatch = useDispatch();
   //  const [num, setNum] = useState(1)
   // const isLoading = useSelector(selectLoading);
   // const error = useSelector(selectError);
 
-  useEffect(() => {
-    dispatch(fetchAdverts(1));
-  }, [dispatch])
+//   useEffect(() => {
+//     dispatch(fetchAdverts(1));
+//   }, [dispatch])
 
   return (
-    <>
-      <Filter/>
-      <CarsList />
-    </>);
+    <center>
+      <h1>Favorites</h1>
+    </center>);
 }
 
-
-
-
-export default Catalog;
+export default Favorites;

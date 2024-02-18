@@ -16,7 +16,7 @@ color: rgb(52, 112, 255);
 margin: 0 5px;
 `;
 
-export const Card = styled.div`
+export const Cards = styled.div`
 width: 274px;
 height: 426px;
 display: flex;

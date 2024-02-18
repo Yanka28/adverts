@@ -1,12 +1,12 @@
 import { Outlet } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-// import { AppBar } from './AppBar/AppBar';
 import { Suspense } from 'react';
+import { Navigation } from 'components/Navigation/Navigation';
 
 export const Layout = () => {
   return (
     <div style={{ maxWidth: 1440, margin: '0 auto', padding: '0 128px' }}>
-      {/* <AppBar /> */}
+      <Navigation />
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>
