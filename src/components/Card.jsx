@@ -15,11 +15,12 @@ const CardContainer = styled.div`
   margin-right: 14px;
   z-index: 1;
 `;
-const Card = ({ item}) => {
+const Card = ({ item , addToFavorites}) => {
   const [clicked, setClicked] = useState(false);
 
   const handleHeartClick = () => {
     setClicked(!clicked);
+    addToFavorites(item);
   };
 
   return (

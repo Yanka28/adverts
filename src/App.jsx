@@ -4,7 +4,6 @@ import { Route, Routes } from 'react-router-dom';
 import { Layout } from './Layout';
 import { useDispatch } from 'react-redux';
 import { fetchAdverts } from './redux/operations.jsx';
-import { RestrictedRoute } from './RestrictedRoute';
 
 const Catalog = lazy(() => import('./pages/Catalog.jsx'))
 const HomePage = lazy(() => import('./pages/Home.jsx'));
@@ -17,9 +16,6 @@ function  App() {
     dispatch(fetchAdverts());
   }, [dispatch])
 
-  // return (
-  //   <Catalog/>
-  // );
   return (
   
     (<Routes>

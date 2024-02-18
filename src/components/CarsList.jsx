@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useState } from 'react';
-import { useToast } from '@chakra-ui/react';
+
 import Card from './Card';
 import { toast } from 'react-toastify';
 import { fetchAdverts } from '../redux/operations';
@@ -9,12 +9,15 @@ import { CardsListStyle, ButtonOnload  } from '../components/CarsList.style'
 
 
 const CarsList = () => {
-  // const toast = useToast({ position: 'top' });
   
   const dispatch = useDispatch();
-  const { list} =useSelector(selectAdverts)
   const { filteredList } = useSelector(selectAdverts);
   const [num, setNum] = useState(1)
+  const [favorites, setFavorites] = useState([]);
+  
+   const addToFavorites = (item) => {
+    setFavorites([...favorites, item]);
+  };
 
   const handleLoadMoreClick = () => {
   if (num < 3) {
@@ -28,14 +31,15 @@ const CarsList = () => {
     });
     return;
   }
- };
-
+  };
+  
+console.log(favorites, 'favorites');
   return (
     <>
   <CardsListStyle>
     {
      filteredList?.map((item) => (
-       <Card item={item} />
+       <Card item={item} addToFavorites={addToFavorites}/>
       ))}
   </CardsListStyle>
   <ButtonOnload onClick={handleLoadMoreClick}>Load more</ButtonOnload>
