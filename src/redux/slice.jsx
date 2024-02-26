@@ -38,11 +38,12 @@ const advertsSlice = createSlice({
       
       };
     },
-      deleteFavoritesList(state, action) {
-      return {
-        ...state,
-        favoritesList: action.payload,
-      };
+    deleteFavoritesList(state, action) {
+       const updatedFavoritesList = state.favoritesList.filter(item => item.id !== action.payload);
+  return {
+    ...state,
+    favoritesList: updatedFavoritesList,
+  };
     },
   },
   extraReducers: builder => {

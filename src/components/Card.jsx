@@ -24,11 +24,9 @@ const Card = ({ item }) => {
 
  
   const handleHeartClick = () => {
-    console.log(item, 'item');
     setClicked(!clicked);
-    console.log(clicked, 'clicked');
-    //    clicked === true? dispatch(addFavoritesList(item)): dispatch(deleteFavoritesList(item.id))
-    dispatch(addFavoritesList(item))
+    !clicked ? dispatch(addFavoritesList(item)): dispatch(deleteFavoritesList(item.id))
+   
   };
 
   return (
