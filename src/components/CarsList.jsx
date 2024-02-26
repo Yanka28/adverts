@@ -13,11 +13,7 @@ const CarsList = () => {
   const dispatch = useDispatch();
   const { filteredList } = useSelector(selectAdverts);
   const [num, setNum] = useState(1)
-  const [favorites, setFavorites] = useState([]);
-  
-   const addToFavorites = (item) => {
-    setFavorites([...favorites, item]);
-  };
+
 
   const handleLoadMoreClick = () => {
   if (num < 3) {
@@ -33,13 +29,12 @@ const CarsList = () => {
   }
   };
   
-console.log(favorites, 'favorites');
   return (
     <>
   <CardsListStyle>
     {
      filteredList?.map((item) => (
-       <Card key={item.id} item={item} addToFavorites={addToFavorites}/>
+       <Card key={item.id} item={item}/>
       ))}
   </CardsListStyle>
   <ButtonOnload onClick={handleLoadMoreClick}>Load more</ButtonOnload>

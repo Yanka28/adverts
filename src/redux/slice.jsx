@@ -15,6 +15,7 @@ const InitialState = {
   isLoading: false,
   error: null,
   filteredList: [],
+  favoritesList:[],
 }
 
 const advertsSlice = createSlice({
@@ -25,6 +26,22 @@ const advertsSlice = createSlice({
       return {
         ...state,
         filteredList: action.payload,
+      };
+    },
+
+    addFavoritesList(state, action) {
+      console.log(state.favoritesList ,'favoritesList slice');
+         console.log(  action.payload, 'action.payload'   );
+      return {
+        ...state,
+        favoritesList: [...state.favoritesList, action.payload] ,
+      
+      };
+    },
+      deleteFavoritesList(state, action) {
+      return {
+        ...state,
+        favoritesList: action.payload,
       };
     },
   },
@@ -40,5 +57,5 @@ const advertsSlice = createSlice({
       .addCase(fetchAdverts.rejected, handleRejected);
   },
 });
-export const { setFilteredList } = advertsSlice.actions;
+export const { setFilteredList, setFavoritesList, deleteFavoritesList, addFavoritesList } = advertsSlice.actions;
 export const advertsReducer = advertsSlice.reducer;

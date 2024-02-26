@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addFavoritesList, deleteFavoritesList } from '../redux/slice';
 import { ReactComponent as Heart } from "../icons/heartnormal-min.svg";
 import styled from 'styled-components';
 import { MakeYear, MakePrice, Cards, Img, Model, Description, Button } from '../components/CarsList.style'
@@ -15,12 +17,18 @@ const CardContainer = styled.div`
   margin-right: 14px;
   z-index: 1;
 `;
-const Card = ({ item , addToFavorites}) => {
+const Card = ({ item }) => {
+   const dispatch = useDispatch();
   const [clicked, setClicked] = useState(false);
 
+
+ 
   const handleHeartClick = () => {
+    console.log(item, 'item');
     setClicked(!clicked);
-    addToFavorites(item);
+    console.log(clicked, 'clicked');
+    //    clicked === true? dispatch(addFavoritesList(item)): dispatch(deleteFavoritesList(item.id))
+    dispatch(addFavoritesList(item))
   };
 
   return (
